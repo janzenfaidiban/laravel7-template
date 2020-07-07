@@ -9,12 +9,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">New Post</h1>
           </div>
-
-
           <div class="row">
-
-
-
             <div class="col-lg-12">
 
 
@@ -27,15 +22,65 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample">
                   <div class="card-body">
-                    This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand!
+
+                    <form class="" action="/administrator/posts/store" method="post" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <label for="thumbnail">Image</label>
+                          <input type="file" class="form-control" name="thumbnail" id="thumbnail" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <label for="title">Title</label>
+                          <input type="text" class="form-control" id="title" placeholder="" name="title">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <label for="title">Body</label>
+                          <textarea name="body" class="form-control" rows="8" cols="80"></textarea>
+                        </div>
+                      </div>
+
+                      <!-- <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <label for="title">Category</label>
+                          <select name="" class="form-control">
+                            <option value="">HTML</option>
+                            <option value="">CSS</option>
+                            <option value="">PHP</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <label for="title">Tags</label>
+                          <select name="" class="form-control">
+                            <option value="">HTML</option>
+                            <option value="">CSS</option>
+                            <option value="">PHP</option>
+                          </select>
+                        </div>
+                      </div> -->
+
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <button type="submit" name="button" class="btn btn-primary">Save</button>
+                          <button type="reset" name="button" class="btn btn-default">Reset</button>
+                        </div>
+                      </div>
+                    </form>
+
                   </div>
                 </div>
               </div>
-
             </div>
-
           </div>
-
         </div>
         <!-- /.container-fluid -->
 

@@ -4,7 +4,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administrator">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -15,24 +15,24 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item{{ (request()->is('administrator/dashboard') || request()->is('/')) ? ' active' : '' }}">
+        <a class="nav-link" href="/administrator/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboar</span></a>
+          <span>Dashboard </span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item{{ (request()->segment(2) == 'posts' || request()->segment(2) == 'category' || request()->segment(2) == 'tags') ? ' active' : '' }}">
+      <li class="nav-item{{ (request()->is('posts') || request()->is('administrator/category') || request()->is('administrator/tags')) ? ' active' : '' }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-folder"></i>
           <span>Posts</span>
         </a>
         <div id="collapseTwo" class="collapse{{ (request()->segment(2) == 'posts' || request()->segment(2) == 'category' || request()->segment(2) == 'tags') ? ' show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item{{ (request()->segment(2) == 'posts' && request()->segment(3) == 'all') ? ' active' : '' }}" href="/administrator/posts/all">All Posts</a>
-            <a class="collapse-item{{ (request()->segment(2) == 'posts' && request()->segment(3) == 'new') ? ' active' : '' }}" href="/administrator/posts/new">Add New</a>
-            <a class="collapse-item{{ (request()->segment(2) == 'category' && request()->segment(3) == 'all' || request()->segment(2) == 'category' && request()->segment(3) == 'new' ) ? ' active' : '' }}" href="/administrator/category/all">Categories</a>
-            <a class="collapse-item{{ (request()->segment(2) == 'tags' && request()->segment(3) == 'all' || request()->segment(2) == 'tags' && request()->segment(3) == 'new') ? ' active' : '' }}" href="/administrator/tags/all">Tags</a>
+            <a class="collapse-item{{ (request()->is('posts') && request()->segment(3) == 'all') ? ' active' : '' }}" href="/administrator/posts/all">All Posts</a>
+            <a class="collapse-item{{ (request()->is('posts') && request()->segment(3) == 'new') ? ' active' : '' }}" href="/administrator/posts/new">Add New</a>
+            <a class="collapse-item{{ (request()->is('category') && request()->segment(3) == 'all' || request()->segment(2) == 'category' && request()->segment(3) == 'new' ) ? ' active' : '' }}" href="/administrator/category/all">Categories</a>
+            <a class="collapse-item{{ (request()->is('administrator/tags') || request()->is('administrator/tags/all') || request()->is('administrator/tags/new')) ? ' active' : '' }}" href="/administrator/tags/all">Tags</a>
           </div>
         </div>
       </li>

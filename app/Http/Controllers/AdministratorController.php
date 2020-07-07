@@ -10,4 +10,8 @@ class AdministratorController extends Controller
     {
       return view('administrator.index');
     }
+    public function login()
+    {
+      return view('administrator.login');
+    }
 }

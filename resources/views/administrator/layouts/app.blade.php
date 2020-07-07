@@ -19,7 +19,7 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-      
+
       <!-- Main Content -->
       <div id="content">
 
@@ -194,7 +194,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="/administrator/login">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -217,6 +217,7 @@
     <!-- End of Content Wrapper -->
 
 @include('administrator.layouts.partials.scripts')
+
 </div>
 
 </body>
