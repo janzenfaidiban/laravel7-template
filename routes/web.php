@@ -16,9 +16,12 @@ Route::get('/administrator/dashboard', 'AdministratorController@index');
 
 // Posts
 Route::get('/administrator/posts', 'PostsController@index');
-Route::get('/administrator/posts/all', 'PostsController@all');
+Route::get('/administrator/posts/all', 'PostsController@index');
+Route::get('/administrator/posts/category/{category:slug}', 'PostsController@category');
 Route::get('/administrator/posts/new', 'PostsController@new');
 Route::post('/administrator/posts/store', 'PostsController@store');
+Route::get('/administrator/posts/view/{post:id}', 'PostsController@view');
+Route::delete('/administrator/posts/{post:id}/delete', 'PostsController@destroy');
 
 // Categories
 Route::get('/administrator/category', 'CategoryController@index');

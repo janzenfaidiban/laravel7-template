@@ -1,23 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function all(Category $category)
     {
-      echo "category > index";
-    }
-
-    public function all()
-    {
-      return view('administrator.category.all');
+        $data = $category->get();
+        return view('administrator.category.all', compact('data'));
     }
 
     public function new()
     {
       return view('administrator.category.new');
+    }
+
+    public function store()
+    {
+        
     }
 }

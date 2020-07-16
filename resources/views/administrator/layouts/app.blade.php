@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>SaCode | Administrator</title>
+<title>{{ $title ?? 'SaCode - Administrator' }}</title>
 @include('administrator.layouts.partials.links')
 </head>
 <body id="page-top">
 
 <div id="wrapper">
   @include('administrator.layouts.partials.sidebar')
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
       <!-- Main Content -->
       <div id="content">
-
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -200,25 +194,17 @@
                 </a>
               </div>
             </li>
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
-
+        @include('administrator.layouts.partials.alert')
         @yield('content')
-
       </div>
       <!-- End of Main Content -->
-
       @include('administrator.layouts.partials.footer')
-
     </div>
     <!-- End of Content Wrapper -->
-
 @include('administrator.layouts.partials.scripts')
-
 </div>
-
 </body>
 </html>

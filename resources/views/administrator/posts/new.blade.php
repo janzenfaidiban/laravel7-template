@@ -1,89 +1,92 @@
 
 @extends('administrator.layouts.app')
 @section('content')
-
 <!-- Begin Page Content -->
         <div class="container-fluid">
-
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">New Post</h1>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-
-
-              <!-- Collapsable Card Example -->
-              <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseCardExample">
-                  <div class="card-body">
-
-                    <form class="" action="/administrator/posts/store" method="post" enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <label for="thumbnail">Image</label>
-                          <input type="file" class="form-control" name="thumbnail" id="thumbnail" placeholder="">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="card-header py-3 d-flex justify-content-left">
+              <h1>Add New</h1>
+            </div>
+            <div class="card-body">
+              {!! Form::open(array('url' => '/administrator/posts/store','files'=>'true', 'id' => 'formValidate','class'=>'formValidate')) !!}
+                @csrf
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label for="title">Title</label>
+                    {!! Form::text('title',null,['maxlength'=>'255','id'=>'title','class'=>'form-control','placeholder'=>'Type title here...']) !!}
+                      @error('title')
+                        <div class="text-danger mt-2">
+                          {{ $message }}
                         </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <label for="title">Title</label>
-                          <input type="text" class="form-control" id="title" placeholder="" name="title">
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <label for="title">Body</label>
-                          <textarea name="body" class="form-control" rows="8" cols="80"></textarea>
-                        </div>
-                      </div>
-
-                      <!-- <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <label for="title">Category</label>
-                          <select name="" class="form-control">
-                            <option value="">HTML</option>
-                            <option value="">CSS</option>
-                            <option value="">PHP</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <label for="title">Tags</label>
-                          <select name="" class="form-control">
-                            <option value="">HTML</option>
-                            <option value="">CSS</option>
-                            <option value="">PHP</option>
-                          </select>
-                        </div>
-                      </div> -->
-
-                      <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <button type="submit" name="button" class="btn btn-primary">Save</button>
-                          <button type="reset" name="button" class="btn btn-default">Reset</button>
-                        </div>
-                      </div>
-                    </form>
-
+                      @enderror
                   </div>
                 </div>
-              </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label for="category">Category</label>
+                    {!! Form::select('category', $categories, null, ['class' => 'form-control', 'id'=>'category','placeholder'=> 'Choose category here...']) !!}
+                      @error('category')
+                        <div class="text-danger mt-2">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label for="body">Body</label>
+                    {!! Form::textarea('body',old('body'),['row'=>'10','cols'=>'80','id'=>'body','class'=>'form-control editor','placeholder'=>'Write your content here...']) !!}
+                    @error('body')
+                      <div class="text-danger mt-2">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label for="tags">Tag</label>
+                    {!! Form::select('tags[]', $tags, null, ['class' => 'form-control select2', 'id'=>'tags','placeholder'=> 'Choose tags here...', 'multiple'=>'multiple']) !!}
+                      @error('tags')
+                        <div class="text-danger mt-2">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                  </div>
+                </div>
+
+                {{-- <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label for="tags">Tags</label>
+                      <select name="tags[]" id="tags" class="form-control select2" multiple>
+                          @foreach ($tags as $tag)
+                              <option value="{{ $tag->id }}">{{ $tag->name }}</option>   
+                          @endforeach
+                      </select>
+                      @error('tags')
+                        <div class="text-danger mt-2">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                  </div>
+                </div> --}}
+
+                <hr class="mt-4">
+
+                <div class="form-group row mt-4">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']); !!}
+                    {!! Form::button('Reset', ['type'=>'reset','class'=>'btn btn-default']); !!}
+                  </div>
+                </div>
+              {!! Form::close() !!}
             </div>
           </div>
         </div>
         <!-- /.container-fluid -->
-
-
-
 @endsection
